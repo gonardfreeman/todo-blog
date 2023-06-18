@@ -1,8 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-
 import styles from "./layout.module.css";
-import utilityStyles from "@/styles/utils.module.css";
 
 type Props = {
 	children: React.ReactNode;
@@ -19,7 +17,7 @@ const Layout = ({ children, home, title, name }: Props) => {
 			</Head>
 			<header className={styles.header}>
 				{!home && <Link href="/">Main</Link>}
-				{home && <h2 className={utilityStyles.headingLg}>{name}</h2>}
+				{home && <h2 className="text-black text-2xl">{name}</h2>}
 			</header>
 			<main>{children}</main>
 			<footer></footer>

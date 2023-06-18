@@ -1,7 +1,13 @@
-:root {
-	--text-color: #221f1f;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-h1 {
-	color: var(--text-color, #000);
+.btn {
+	@apply font-bold py-1 px-2 rounded h-8;
+}
+.btn-blue {
+	@apply bg-blue-500 text-white;
+}
+.btn-blue:hover {
+	@apply bg-blue-700;
 }

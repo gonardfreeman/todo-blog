@@ -4,7 +4,6 @@ import { Post } from "@prisma/client";
 import { GetStaticProps } from "next";
 import prisma from "@/lib/prisma";
 import Layout from "@/components/layout";
-import utilStyles from "@/styles/utils.module.css";
 
 type PostsMainPage = Pick<Post, "id" | "title">;
 
@@ -32,9 +31,9 @@ export const getStaticProps: GetStaticProps = async () => {
 function Blog({ allPosts }: { allPosts: Array<PostsMainPage> }) {
 	return (
 		<Layout home title="Home" name="My Blog">
-			<ul className={utilStyles.list}>
+			<ul className="list-none">
 				{allPosts.map((p) => (
-					<li key={p.id} className={utilStyles.listItem}>
+					<li key={p.id}>
 						<Link href={`/posts/${p.id}`}>{p.title}</Link>
 					</li>
 				))}
