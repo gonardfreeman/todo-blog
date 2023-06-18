@@ -1,65 +1,59 @@
-import { createTodo } from "@/lib/todos/fetch";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { FormProvider, useForm } from "react-hook-form";
 import { useQueryClient, useMutation } from "react-query";
 
-const initialTodo = Object.freeze({
-	title: "",
-	authorId: 1,
-	notes: "",
-	isDone: false,
-});
+import InputComponent from "./input";
+import { createTodo } from "@/lib/todos/fetch";
+import { titleValidation, notesValidation, isDoneValidation } from "@/utils/inputValidations";
+import { TodoPayload } from "@/types/todo";
 
-// TODO: add forms https://react-hook-form.com/get-started#Quickstart
 export default function CreateTodo() {
-	const [todo, setTodo] = useState(initialTodo);
+	const methods = useForm();
+	const [success, setSuccess] = useState(false);
 	const queryClient = useQueryClient();
 	const mutation = useMutation(createTodo, {
 		onSuccess: () => {
 			queryClient.invalidateQueries("todos");
-			setTodo(initialTodo);
 		},
 		onError: (err) => {
 			console.log(err);
 		},
 	});
-	function handleAddTodo() {
-		if (todo.title.length < 1 || todo.notes.length < 1) {
+
+	const onSubmit = methods.handleSubmit((data) => {
+		mutation.mutate({ ...data, authorId: 1 } as TodoPayload);
+		methods.reset();
+		setSuccess(true);
+	});
+
+	useEffect(() => {
+		if (success === false) {
 			return;
 		}
-		mutation.mutate(todo);
-	}
+		console.log("triggered");
+		const timeoutId = setTimeout(() => {
+			setSuccess(false);
+		}, 3000);
 
-	function handleChangeTodo(e: React.ChangeEvent<HTMLInputElement>) {
-		setTodo({
-			...todo,
-			[e.currentTarget.name]: e.currentTarget.name === "isDone" ? e.currentTarget.checked : e.currentTarget.value,
-		});
-	}
+		return () => {
+			clearTimeout(timeoutId);
+		};
+	}, [success]);
 
 	return (
-		<div className="border-amber-800 rounded-md flex flex-col">
-			<h3 className="text-gray-800 text-xl mt-1">New Todo:</h3>
-			<label className="block mb-2">
-				<span className="todo-input__label">Title</span>
-				<input className="todo-input" type="text" value={todo.title} name="title" onChange={handleChangeTodo} />
-			</label>
-			<label className="block mb-2">
-				<span className="todo-input__label">Notes</span>
-				<input className="todo-input" type="text" value={todo.notes} name="notes" onChange={handleChangeTodo} />
-			</label>
-			<label className="block mb-2">
-				<span className="todo-input__label">Is Done</span>
-				<input
-					name="isDone"
-					type="checkbox"
-					checked={todo.isDone}
-					onChange={handleChangeTodo}
-					className="todo-input--checkbox"
-				/>
-			</label>
-			<button className="btn btn-blue" onClick={handleAddTodo}>
-				Add Todo
-			</button>
-		</div>
+		<FormProvider {...methods}>
+			<form onSubmit={(e) => e.preventDefault()} noValidate autoComplete="off" className="container">
+				<div className="border-amber-800 rounded-md flex flex-col">
+					<h3 className="text-gray-800 text-xl mt-1">New Todo:</h3>
+					<InputComponent {...titleValidation} />
+					<InputComponent {...notesValidation} />
+					<InputComponent {...isDoneValidation} />
+				</div>
+				{success && <p className="font-semibold text-green-500 mb-5">Todo has been added</p>}
+				<button onClick={onSubmit} className="btn btn-blue">
+					Add Todo
+				</button>
+			</form>
+		</FormProvider>
 	);
 }

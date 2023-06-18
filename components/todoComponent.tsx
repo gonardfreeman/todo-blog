@@ -1,4 +1,5 @@
 import { Todo } from "@prisma/client";
+import { BsTrash } from "react-icons/bs";
 import { deleteTodo } from "@/lib/todos/fetch";
 import { useQueryClient, useMutation } from "react-query";
 import Date from "./date";
@@ -21,8 +22,8 @@ export default function TodoMasterComponent({ todo }: { todo: Todo }) {
 				<Date dateParam={todo.createdAt} />
 				<div className="text-gray-600">{todo.notes}</div>
 			</div>
-			<button className="btn btn-red" onClick={handleDelete}>
-				Delete
+			<button className="btn-color-red" onClick={handleDelete}>
+				<BsTrash />
 			</button>
 		</div>
 	);

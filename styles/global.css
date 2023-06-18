@@ -21,6 +21,14 @@
 	@apply bg-red-700;
 }
 
+.btn-color-red {
+	@apply text-red-500 bg-white;
+}
+
+.btn-color-red:hover {
+	@apply text-red-700;
+}
+
 .todo-input__label {
 	@apply block text-sm font-medium text-slate-700;
 }
