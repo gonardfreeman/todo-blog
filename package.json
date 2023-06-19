@@ -7,6 +7,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
+    "prepare": "panda codegen",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -27,6 +28,7 @@
     "superjson": "1.12.3"
   },
   "devDependencies": {
+    "@pandacss/dev": "^0.3.2",
     "@types/node": "18.16.18",
     "@types/react": "18.2.12",
     "@types/react-dom": "18.2.5",

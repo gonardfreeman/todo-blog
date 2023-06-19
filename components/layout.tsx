@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import styles from "./layout.module.css";
+import { css } from "@/styled-system/css";
 
 type Props = {
 	children: React.ReactNode;
@@ -11,11 +11,11 @@ type Props = {
 
 const Layout = ({ children, home, title, name }: Props) => {
 	return (
-		<div className={styles.container}>
+		<div className={css({ maxWidth: "36rem", padding: "0 1rem", margin: "3rem auto 6rem" })}>
 			<Head>
 				<title>{title}</title>
 			</Head>
-			<header className={styles.header}>
+			<header className={css({ display: "flex", flexDirection: "column", alignItems: "center" })}>
 				{!home && <Link href="/">Main</Link>}
 				{home && <h2 className="text-black text-2xl">{name}</h2>}
 			</header>
