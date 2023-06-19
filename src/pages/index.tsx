@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Post } from "@prisma/client";
 import { GetStaticProps } from "next";
-import prisma from "@/lib/prisma";
+import prisma from "@lib/prisma";
 import Layout from "@/components/layout";
 
 type PostsMainPage = Pick<Post, "id" | "title">;

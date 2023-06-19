@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
-import { css } from "@/styled-system/css";
+import { css } from "../../styled-system/css";
 
 type Props = {
 	children: React.ReactNode;
@@ -19,7 +19,7 @@ const Layout = ({ children, home, title, name }: Props) => {
 				{!home && <Link href="/">Main</Link>}
 				{home && <h2 className="text-black text-2xl">{name}</h2>}
 			</header>
-			<main>{children}</main>
+			<div className={css({ margin: "0 auto", padding: 4 })}>{children}</div>
 			<footer></footer>
 		</div>
 	);

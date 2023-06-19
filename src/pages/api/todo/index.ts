@@ -1,5 +1,5 @@
-import { getTodos } from "@/lib/todos/select";
-import { addTodo } from "@/lib/todos/mutation";
+import { getTodos } from "@lib/todos/select";
+import { addTodo } from "@lib/todos/mutation";
 import { NextApiRequest, NextApiResponse } from "next";
 
 export default async function handler(req: NextApiRequest, resp: NextApiResponse) {

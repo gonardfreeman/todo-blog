@@ -1,5 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import { deleteTodo } from "@/lib/todos/mutation";
+import { deleteTodo } from "@lib/todos/mutation";
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	const { id: idParam } = req.query;

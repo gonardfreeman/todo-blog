@@ -1,7 +1,7 @@
 import { Todo } from "@prisma/client";
 import { NextApiRequest } from "next";
 import prisma from "../prisma";
-import type { TodoPayload } from "@/types/todo";
+import type { TodoPayload } from "../types/todo";
 
 async function insertTodo(payload: TodoPayload): Promise<Todo> {
 	const { authorId, ...todoPayload } = payload;

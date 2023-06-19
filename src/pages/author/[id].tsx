@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
 import prisma from "@/lib/prisma";
-import Layout from "@/components/layout";
+import Layout from "@/src/components/layout";
 import { User } from "@prisma/client";
 import Link from "next/link";
 

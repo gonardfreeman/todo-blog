@@ -1,6 +1,6 @@
 import cn from "classnames";
 import { useFormContext } from "react-hook-form";
-import { InputWithValidation } from "@/types/input";
+import { InputWithValidation } from "../../lib/types/input";
 
 export default function InputComponent({
 	label,

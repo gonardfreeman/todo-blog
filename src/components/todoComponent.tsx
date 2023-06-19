@@ -1,6 +1,6 @@
 import { Todo } from "@prisma/client";
 import { BsTrash } from "react-icons/bs";
-import { deleteTodo } from "@/lib/todos/fetch";
+import { deleteTodo } from "@lib/todos/fetch";
 import { useQueryClient, useMutation } from "react-query";
 import Date from "./date";
 

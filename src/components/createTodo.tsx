@@ -3,9 +3,9 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useQueryClient, useMutation } from "react-query";
 
 import InputComponent from "./input";
-import { createTodo } from "@/lib/todos/fetch";
-import { titleValidation, notesValidation, isDoneValidation } from "@/utils/inputValidations";
-import { TodoPayload } from "@/types/todo";
+import { createTodo } from "@lib/todos/fetch";
+import { titleValidation, notesValidation, isDoneValidation } from "@lib/inputValidations";
+import { TodoPayload } from "@lib/types/todo";
 
 export default function CreateTodo() {
 	const methods = useForm();

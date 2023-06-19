@@ -1,5 +1,5 @@
 import TodoMasterComponent from "@/components/todoComponent";
-import { loadTodos } from "@/lib/todos/fetch";
+import { loadTodos } from "@lib/todos/fetch";
 import { useQuery } from "react-query";
 import CreateTodo from "./createTodo";
 

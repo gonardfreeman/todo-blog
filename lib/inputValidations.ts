@@ -1,4 +1,4 @@
-import { InputWithValidation } from "@/types/input";
+import { InputWithValidation } from "./types/input";
 import { FieldErrors, FieldValues } from "react-hook-form";
 
 export const isFormInvalid = (err: FieldErrors<FieldValues>) => Object.keys(err).length > 0;

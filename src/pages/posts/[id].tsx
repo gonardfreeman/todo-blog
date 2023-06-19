@@ -2,7 +2,7 @@ import { GetStaticPaths, GetStaticProps } from "next";
 import { Post, User } from "@prisma/client";
 import Date from "@/components/date";
 import Layout from "@/components/layout";
-import prisma from "@/lib/prisma";
+import prisma from "@lib/prisma";
 import Link from "next/link";
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -40,7 +40,7 @@ export default function BlogPost({ post }: { post: Post & { author: User } }) {
 			<Link rel="author" href={`/author/${post.id}`}>
 				{post.author.name}
 			</Link>
-			<Date dateString={`${post.createdAt.toISOString()}`} />
+			<Date dateParam={`${post.createdAt.toISOString()}`} />
 			<article>{post.content}</article>
 		</Layout>
 	);
