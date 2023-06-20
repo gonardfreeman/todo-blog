@@ -4,6 +4,7 @@ import Date from "@/components/date";
 import Layout from "@/components/layout";
 import prisma from "@lib/prisma";
 import Link from "next/link";
+import { css } from "@styles/css";
 
 export const getStaticPaths: GetStaticPaths = async () => {
 	const paths = (
@@ -36,11 +37,13 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export default function BlogPost({ post }: { post: Post & { author: User } }) {
 	return (
 		<Layout title={post.title}>
-			<h2>{post.title}</h2>
-			<Link rel="author" href={`/author/${post.id}`}>
-				{post.author.name}
-			</Link>
-			<Date dateParam={`${post.createdAt.toISOString()}`} />
+			<h2 className={css({ fontSize: "2xl", color: "black.700" })}>{post.title}</h2>
+			<div className={css({ display: "flex", gap: 1, flexDir: "column", marginBottom: 1 })}>
+				<Link rel="author" href={`/author/${post.id}`}>
+					{post.author.name}
+				</Link>
+				<Date dateParam={`${post.createdAt.toISOString()}`} />
+			</div>
 			<article>{post.content}</article>
 		</Layout>
 	);
